@@ -1,5 +1,7 @@
 #include "vector.h"
 
+#include <cmath>
+
 vector3d::vector3d(float x, float y, float z)
 	: x{ x }, y{ y }, z{ z }
 {}
@@ -45,6 +47,16 @@ vector3d& vector3d::operator/=(float scalar)
 	y *= scalar;
 	z *= scalar;
 	return *this;
+}
+
+float magnitude(const vector3d& vec)
+{
+	return (std::sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z));
+}
+
+vector3d normalize(const vector3d& vec)
+{
+	return (vec / magnitude(vec));
 }
 
 vector3d operator+(const vector3d& vec1, const vector3d& vec2)

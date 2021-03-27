@@ -1,5 +1,5 @@
 #pragma once
-
+#include <math.h>
 struct vector3d
 {
 public:
@@ -18,6 +18,9 @@ public:
 public:
 	float x, y, z;
 };
+
+float magnitude(const vector3d& vec);
+vector3d normalize(const vector3d& vec);
 
 vector3d operator+(const vector3d& vec1, const vector3d& vec2);
 vector3d operator-(const vector3d& vec1, const vector3d& vec2);
