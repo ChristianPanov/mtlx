@@ -66,42 +66,64 @@ namespace mtlx
 	template<std::uint8_t Dims, typename Type>
 	vector<Dims, Type> operator+(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2)
 	{
+		vector<Dims, Type> temp;
 		return [&]() {
 			for (std::uint8_t i = 0; i < Dims; ++i)
-				vec1[i] += vec2[i];
-			return vector<Dims, Type>(vec1);
+				temp[i] += vec2[i];
+			return vector<Dims, Type>(temp);
 		}();
 	}
 
 	template<std::uint8_t Dims, typename Type>
 	vector<Dims, Type> operator-(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2)
 	{
+		vector<Dims, Type> temp;
 		return [&]() {
 			for (std::uint8_t i = 0; i < Dims; ++i)
-				vec1[i] -= vec2[i];
-			return vector<Dims, Type>(vec1);
+				temp[i] -= vec2[i];
+			return vector<Dims, Type>(temp);
 		}();
 	}
 
 	template<std::uint8_t Dims, typename Type>
 	vector<Dims, Type> operator*(const vector<Dims, Type>& vec, Type scalar)
 	{
+		vector<Dims, Type> temp;
 		return [&]() {
 			for (std::uint8_t i = 0; i < Dims; ++i)
-				vec[i] *= scalar;
-			return vector<Dims, Type>(vec);
+				temp[i] *= scalar;
+			return vector<Dims, Type>(temp);
 		}();
 	}
 
 	template<std::uint8_t Dims, typename Type>
 	vector<Dims, Type> operator/(const vector<Dims, Type>& vec, Type scalar)
 	{
+		vector<Dims, Type> temp;
 		return [&]() {
 			scalar = 1.0f / scalar;
 			for (std::uint8_t i = 0; i < Dims; ++i)
-				vec[i] *= scalar;
-			return vector<Dims, Type>(vec);
+				temp[i] *= scalar;
+			return vector<Dims, Type>(temp);
 		}();
+	}
+
+	template<std::uint8_t Dims, typename Type>
+	vector<Dims, Type> normalize(const vector<Dims, Type>& vec)
+	{
+		return (vec / magnitude(vec));
+	}
+
+	template<std::uint8_t Dims, typename Type>
+	vector<Dims, Type> project(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2)
+	{
+		return (vec2 * (dot(vec1, vec2) / dot(vec2, vec2)));
+	}
+
+	template<std::uint8_t Dims, typename Type>
+	vector<Dims, Type> reject(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2)
+	{
+		return (vec1 - vec2 * (dot(vec1, vec2) / dot(vec2, vec2)));
 	}
 
 	template<std::uint8_t Dims, typename Type>
@@ -113,12 +135,6 @@ namespace mtlx
 				mag += vec[i] * vec[i];
 			return std::sqrt(mag);
 		}();
-	}
-
-	template<std::uint8_t Dims, typename Type>
-	vector<Dims, Type> normalize(const vector<Dims, Type>& vec)
-	{
-		return (vec / magnitude(vec));
 	}
 
 	template<std::uint8_t Dims, typename Type>
