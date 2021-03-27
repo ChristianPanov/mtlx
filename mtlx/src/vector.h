@@ -18,3 +18,8 @@ public:
 public:
 	float x, y, z;
 };
+
+vector3d operator+(const vector3d& vec1, const vector3d& vec2);
+vector3d operator-(const vector3d& vec1, const vector3d& vec2);
+vector3d operator*(const vector3d& vec, float scalar);
+vector3d operator/(const vector3d& vec, float scalar);

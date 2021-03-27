@@ -46,3 +46,24 @@ vector3d& vector3d::operator/=(float scalar)
 	z *= scalar;
 	return *this;
 }
+
+vector3d operator+(const vector3d& vec1, const vector3d& vec2)
+{
+	return vector3d(vec1.x + vec2.x, vec1.y + vec2.y, vec1.z + vec2.z);
+}
+
+vector3d operator-(const vector3d& vec1, const vector3d& vec2)
+{
+	return vector3d(vec1.x - vec2.x, vec1.y - vec2.y, vec1.z - vec2.z);
+}
+
+vector3d operator*(const vector3d& vec, float scalar)
+{
+	return vector3d(vec.x * scalar, vec.y * scalar, vec.z * scalar);
+}
+
+vector3d operator/(const vector3d& vec, float scalar)
+{
+	scalar = 1.0f / scalar;
+	return vector3d(vec.x * scalar, vec.y * scalar, vec.z * scalar);
+}
