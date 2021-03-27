@@ -10,6 +10,7 @@ int main()
 	mtlx::magnitude(vec);
 
 	std::cout << vec.y << "\n";
+	std::cout << vec.r << "\n";
 
 	return 0;
 }

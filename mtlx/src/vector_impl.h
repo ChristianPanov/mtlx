@@ -2,6 +2,9 @@
 
 #include "vector.h"
 
+#define MTLX_COLOR_ANALOG3 Type& r{ x }, &g{ y }, &b{ z }
+#define MTLX_COLOR_ANALOG4 Type& r{ x }, &g{ y }, &b{ z }, &a{ w }
+
 namespace mtlx
 {
 	template<std::uint8_t Dims, typename Type>
@@ -175,6 +178,7 @@ namespace mtlx
 		using vector<3, Type>::vector;
 		Type& y{ values[1] };
 		Type& z{ values[2] };
+		MTLX_COLOR_ANALOG3;
 	};
 
 	template<typename Type>
@@ -184,5 +188,6 @@ namespace mtlx
 		Type& y{ values[1] };
 		Type& z{ values[2] };
 		Type& w{ values[3] };
+		MTLX_COLOR_ANALOG4;
 	};
 }
