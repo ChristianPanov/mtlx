@@ -120,4 +120,15 @@ namespace mtlx
 	{
 		return (vec / magnitude(vec));
 	}
+
+	template<std::uint8_t Dims, typename Type>
+	Type dot(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2)
+	{
+		return [&]() {
+			Type dot_product{};
+			for (std::uint8_t i = 0; i < Dims; ++i)
+				dot_product += vec1[i] * vec2[i];
+			return dot_product;
+		}();
+	}
 }

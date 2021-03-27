@@ -45,6 +45,9 @@ namespace mtlx
 
 	template<std::uint8_t Dims, typename Type>
 	vector<Dims, Type> normalize(const vector<Dims, Type>& vec);
+
+	template<std::uint8_t Dims, typename Type>
+	Type dot(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2);
 }
 
 #include "vector_impl.h"
