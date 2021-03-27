@@ -166,7 +166,7 @@ namespace mtlx
 	template<std::uint8_t Dims, typename Type>
 	Type magnitude(const vec<Dims, Type>& vec1)
 	{
-		return [vec1]() {
+		return [&]() {
 			Type mag{};
 			for (std::uint8_t i = 0; i < Dims; ++i)
 				mag += vec1[i] * vec1[i];
