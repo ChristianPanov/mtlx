@@ -91,88 +91,66 @@ namespace mtlx
 	}
 
 	template<std::uint8_t Dims, typename Type>
-	vector<Dims, Type> operator+(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2)
+	vec<Dims, Type> operator+(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2)
 	{
-		vector<Dims, Type> temp(vec1);
+		vec<Dims, Type> temp(vec1);
 		return [&]() {
 			for (std::uint8_t i = 0; i < Dims; ++i)
 				temp[i] += vec2[i];
-			return vector<Dims, Type>(temp);
+			return vec<Dims, Type>(temp);
 		}();
 	}
 
 	template<std::uint8_t Dims, typename Type>
-	vector<Dims, Type> operator-(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2)
+	vec<Dims, Type> operator-(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2)
 	{
-		vector<Dims, Type> temp(vec1);
+		vec<Dims, Type> temp(vec1);
 		return [&]() {
 			for (std::uint8_t i = 0; i < Dims; ++i)
 				temp[i] -= vec2[i];
-			return vector<Dims, Type>(temp);
+			return vec<Dims, Type>(temp);
 		}();
 	}
 
 	template<std::uint8_t Dims, typename Type>
-	vector<Dims, Type> operator*(const vector<Dims, Type>& vec, Type scalar)
+	vec<Dims, Type> operator*(const vec<Dims, Type>& vec1, Type scalar)
 	{
-		vector<Dims, Type> temp(vec);
+		vec<Dims, Type> temp(vec1);
 		return [&]() {
 			for (std::uint8_t i = 0; i < Dims; ++i)
 				temp[i] *= scalar;
-			return vector<Dims, Type>(temp);
+			return vec<Dims, Type>(temp);
 		}();
 	}
 
 	template<std::uint8_t Dims, typename Type>
-	vector<Dims, Type> operator/(const vector<Dims, Type>& vec, Type scalar)
+	vec<Dims, Type> operator/(const vec<Dims, Type>& vec1, Type scalar)
 	{
-		vector<Dims, Type> temp(vec);
+		vec<Dims, Type> temp(vec1);
 		return [&]() {
 			scalar = 1.0f / scalar;
 			for (std::uint8_t i = 0; i < Dims; ++i)
 				temp[i] *= scalar;
-			return vector<Dims, Type>(temp);
+			return vec<Dims, Type>(temp);
 		}();
 	}
 
 	template<std::uint8_t Dims, typename Type>
-	vector<Dims, Type> normalize(const vector<Dims, Type>& vec)
+	vec<Dims, Type> normalize(const vec<Dims, Type>& vec1)
 	{
-		return (vec / magnitude(vec));
+		return (vec1 / magnitude(vec1));
 	}
 
 	template<std::uint8_t Dims, typename Type>
-	vector<Dims, Type> project(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2)
+	vec<Dims, Type> project(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2)
 	{
 		return (vec2 * (dot(vec1, vec2) / dot(vec2, vec2)));
 	}
 
 	template<std::uint8_t Dims, typename Type>
-	vector<Dims, Type> reject(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2)
+	vec<Dims, Type> reject(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2)
 	{
 		return (vec1 - vec2 * (dot(vec1, vec2) / dot(vec2, vec2)));
-	}
-
-	template<std::uint8_t Dims, typename Type>
-	Type magnitude(const vector<Dims, Type>& vec)
-	{
-		return [vec]() {
-			Type mag{};
-			for (std::uint8_t i = 0; i < Dims; ++i)
-				mag += vec[i] * vec[i];
-			return std::sqrt(mag);
-		}();
-	}
-
-	template<std::uint8_t Dims, typename Type>
-	Type dot(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2)
-	{
-		return [&]() {
-			Type dot_product{};
-			for (std::uint8_t i = 0; i < Dims; ++i)
-				dot_product += vec1[i] * vec2[i];
-			return dot_product;
-		}();
 	}
 
 	template<typename Type>
@@ -183,6 +161,28 @@ namespace mtlx
 			vec1.z * vec2.x - vec1.x * vec2.z,
 			vec1.y * vec2.y - vec1.y * vec2.x
 			);
+	}
+
+	template<std::uint8_t Dims, typename Type>
+	Type magnitude(const vec<Dims, Type>& vec1)
+	{
+		return [vec1]() {
+			Type mag{};
+			for (std::uint8_t i = 0; i < Dims; ++i)
+				mag += vec1[i] * vec1[i];
+			return std::sqrt(mag);
+		}();
+	}
+
+	template<std::uint8_t Dims, typename Type>
+	Type dot(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2)
+	{
+		return [&]() {
+			Type dot_product{};
+			for (std::uint8_t i = 0; i < Dims; ++i)
+				dot_product += vec1[i] * vec2[i];
+			return dot_product;
+		}();
 	}
 
 	template<typename Type>

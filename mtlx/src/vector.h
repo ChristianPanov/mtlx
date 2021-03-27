@@ -33,33 +33,6 @@ namespace mtlx
 		Type& x{ values[0] };
 	};
 
-	template<std::uint8_t Dims, typename Type>
-	vector<Dims, Type> operator+(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2);
-
-	template<std::uint8_t Dims, typename Type>
-	vector<Dims, Type> operator-(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2);
-
-	template<std::uint8_t Dims, typename Type>
-	vector<Dims, Type> operator*(const vector<Dims, Type>& vec, Type scalar);
-
-	template<std::uint8_t Dims, typename Type>
-	vector<Dims, Type> operator/(const vector<Dims, Type>& vec, Type scalar);
-
-	template<std::uint8_t Dims, typename Type>
-	vector<Dims, Type> normalize(const vector<Dims, Type>& vec);
-
-	template<std::uint8_t Dims, typename Type>
-	vector<Dims, Type> project(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2);
-
-	template<std::uint8_t Dims, typename Type>
-	vector<Dims, Type> reject(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2);
-
-	template<std::uint8_t Dims, typename Type>
-	Type magnitude(const vector<Dims, Type>& vec);
-
-	template<std::uint8_t Dims, typename Type>
-	Type dot(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2);
-
 	template<
 		std::uint8_t Dims,
 		typename Type = float
@@ -69,8 +42,35 @@ namespace mtlx
 	template<typename Type> struct vec<3, Type>;
 	template<typename Type> struct vec<4, Type>;
 
+	template<std::uint8_t Dims, typename Type>
+	vec<Dims, Type> operator+(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2);
+
+	template<std::uint8_t Dims, typename Type>
+	vec<Dims, Type> operator-(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2);
+
+	template<std::uint8_t Dims, typename Type>
+	vec<Dims, Type> operator*(const vec<Dims, Type>& vec1, Type scalar);
+
+	template<std::uint8_t Dims, typename Type>
+	vec<Dims, Type> operator/(const vec<Dims, Type>& vec1, Type scalar);
+
+	template<std::uint8_t Dims, typename Type>
+	vec<Dims, Type> normalize(const vec<Dims, Type>& vec1);
+
+	template<std::uint8_t Dims, typename Type>
+	vec<Dims, Type> project(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2);
+
+	template<std::uint8_t Dims, typename Type>
+	vec<Dims, Type> reject(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2);
+
 	template<typename Type>
-	inline vec<3, Type> cross(const vec<3, Type>& vec1, const vec<3, Type>& vec2);
+	vec<3, Type> cross(const vec<3, Type>& vec1, const vec<3, Type>& vec2);
+
+	template<std::uint8_t Dims, typename Type>
+	Type magnitude(const vec<Dims, Type>& vec1);
+
+	template<std::uint8_t Dims, typename Type>
+	Type dot(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2);
 
 	using vec1 = vec<1, float>;
 	using vec2 = vec<2, float>;
