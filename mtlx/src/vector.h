@@ -1,30 +1,50 @@
 #pragma once
 
 #include <cstdint>
+#include <type_traits>
 
-struct vector3d
+template<
+	std::uint8_t Dims,
+	typename Type = float
+>
+struct vector
 {
 public:
-	vector3d(float x, float y, float z);
+	template<typename... Args,
+		typename = std::enable_if_t<sizeof...(Args) == Dims>>
+	vector(Args&&... args);
 
 public:
-	float& operator[](std::uint32_t index);
-	const float& operator[](std::uint32 index) const;
+	Type& operator[](std::uint8_t index);
+	const Type& operator[](std::uint8_t index) const;
 
 public:
-	vector3d& operator+=(const vector3d& other);
-	vector3d& operator-=(const vector3d& other);
-	vector3d& operator*=(float scalar);
-	vector3d& operator/=(float scalar);
+	vector& operator+=(const vector& other);
+	vector& operator-=(const vector& other);
+	vector& operator*=(Type scalar);
+	vector& operator/=(Type scalar);
+	vector& operator-();
 
 public:
-	float x, y, z;
+	Type values[Dims]{};
 };
 
-float magnitude(const vector3d& vec);
-vector3d normalize(const vector3d& vec);
+template<std::uint8_t Dims, typename Type>
+vector<Dims, Type> operator+(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2);
 
-vector3d operator+(const vector3d& vec1, const vector3d& vec2);
-vector3d operator-(const vector3d& vec1, const vector3d& vec2);
-vector3d operator*(const vector3d& vec, float scalar);
-vector3d operator/(const vector3d& vec, float scalar);
+template<std::uint8_t Dims, typename Type>
+vector<Dims, Type> operator-(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2);
+
+template<std::uint8_t Dims, typename Type>
+vector<Dims, Type> operator*(const vector<Dims, Type>& vec, Type scalar);
+
+template<std::uint8_t Dims, typename Type>
+vector<Dims, Type> operator/(const vector<Dims, Type>& vec, Type scalar);
+
+template<std::uint8_t Dims, typename Type>
+Type magnitude(const vector<Dims, Type>& vec);
+
+template<std::uint8_t Dims, typename Type>
+vector<Dims, Type> normalize(const vector<Dims, Type>& vec);
+
+#include "vector_impl.h"
