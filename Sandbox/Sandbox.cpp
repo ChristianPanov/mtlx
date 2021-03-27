@@ -1,8 +1,8 @@
-#include "Test.h"
+#include "vector.h"
 
 int main()
 {
-	Foo foo;
+	vector3d vec(1.0f, 5.0f, 1.0f);
 
 	return 0;
 }
