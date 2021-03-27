@@ -153,6 +153,16 @@ namespace mtlx
 	}
 
 	template<typename Type>
+	vec<3, Type> cross(const vec<3, Type>& vec1, const vec<3, Type>& vec2)
+	{
+		return vec<3, Type>(
+			vec1.y * vec2.z - vec1.z * vec2.y,
+			vec1.z * vec2.x - vec1.x * vec2.z,
+			vec1.y * vec2.y - vec1.y * vec2.x
+			);
+	}
+
+	template<typename Type>
 	struct vec<2, Type> : public vector<2, Type>
 	{
 		using vector<2, Type>::vector;

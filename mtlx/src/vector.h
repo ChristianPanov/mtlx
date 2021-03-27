@@ -65,6 +65,9 @@ namespace mtlx
 	template<typename Type> struct vec<2, Type>;
 	template<typename Type> struct vec<3, Type>;
 	template<typename Type> struct vec<4, Type>;
+
+	template<typename Type>
+	inline vec<3, Type> cross(const vec<3, Type>& vec1, const vec<3, Type>& vec2);
 }
 
 #include "vector_impl.h"
