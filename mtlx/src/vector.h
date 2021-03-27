@@ -68,6 +68,11 @@ namespace mtlx
 
 	template<typename Type>
 	inline vec<3, Type> cross(const vec<3, Type>& vec1, const vec<3, Type>& vec2);
+
+	using vec1 = vec<1, float>;
+	using vec2 = vec<2, float>;
+	using vec3 = vec<3, float>;
+	using vec4 = vec<4, float>;
 }
 
 #include "vector_impl.h"
