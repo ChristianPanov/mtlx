@@ -1,13 +1,15 @@
 #pragma once
-#include <math.h>
+
+#include <cstdint>
+
 struct vector3d
 {
 public:
 	vector3d(float x, float y, float z);
 
 public:
-	float& operator[](unsigned int index);
-	const float& operator[](unsigned int index) const;
+	float& operator[](std::uint32_t index);
+	const float& operator[](std::uint32 index) const;
 
 public:
 	vector3d& operator+=(const vector3d& other);

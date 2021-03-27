@@ -6,12 +6,12 @@ vector3d::vector3d(float x, float y, float z)
 	: x{ x }, y{ y }, z{ z }
 {}
 
-float& vector3d::operator[](unsigned int index)
+float& vector3d::operator[](std::uint32_t index)
 {
 	return (&x)[index];
 }
 
-const float& vector3d::operator[](unsigned int index) const
+const float& vector3d::operator[](std::uint32_t index) const
 {
 	return (&x)[index];
 }
