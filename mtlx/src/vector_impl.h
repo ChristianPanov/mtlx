@@ -18,9 +18,23 @@ namespace mtlx
 	}
 
 	template<std::uint8_t Dims, typename Type>
+	vector<Dims, Type>::vector(Type (&arr)[Dims])
+	{
+		for (std::uint8_t i = 0; i < Dims; ++i)
+			values[i] = arr[i];
+	}
+
+	template<std::uint8_t Dims, typename Type>
 	vector<Dims, Type>::vector(const vector& other)
 	{
 		std::memcpy(values, other.values, Dims * sizeof(Type));
+	}
+
+	template<std::uint8_t Dims, typename Type>
+	vector<Dims, Type>& vector<Dims, Type>::operator=(const vector& other)
+	{
+		*this = other;
+		return *this;
 	}
 
 	template<std::uint8_t Dims, typename Type>
@@ -79,7 +93,7 @@ namespace mtlx
 	template<std::uint8_t Dims, typename Type>
 	vector<Dims, Type> operator+(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2)
 	{
-		vector<Dims, Type> temp;
+		vector<Dims, Type> temp(vec1);
 		return [&]() {
 			for (std::uint8_t i = 0; i < Dims; ++i)
 				temp[i] += vec2[i];
@@ -90,7 +104,7 @@ namespace mtlx
 	template<std::uint8_t Dims, typename Type>
 	vector<Dims, Type> operator-(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2)
 	{
-		vector<Dims, Type> temp;
+		vector<Dims, Type> temp(vec1);
 		return [&]() {
 			for (std::uint8_t i = 0; i < Dims; ++i)
 				temp[i] -= vec2[i];
@@ -101,7 +115,7 @@ namespace mtlx
 	template<std::uint8_t Dims, typename Type>
 	vector<Dims, Type> operator*(const vector<Dims, Type>& vec, Type scalar)
 	{
-		vector<Dims, Type> temp;
+		vector<Dims, Type> temp(vec);
 		return [&]() {
 			for (std::uint8_t i = 0; i < Dims; ++i)
 				temp[i] *= scalar;
@@ -112,7 +126,7 @@ namespace mtlx
 	template<std::uint8_t Dims, typename Type>
 	vector<Dims, Type> operator/(const vector<Dims, Type>& vec, Type scalar)
 	{
-		vector<Dims, Type> temp;
+		vector<Dims, Type> temp(vec);
 		return [&]() {
 			scalar = 1.0f / scalar;
 			for (std::uint8_t i = 0; i < Dims; ++i)

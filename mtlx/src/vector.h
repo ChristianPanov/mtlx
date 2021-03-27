@@ -13,7 +13,9 @@ namespace mtlx
 		template<typename Arg, typename... Args,
 			typename = std::enable_if_t<sizeof...(Args) + 1 == Dims>>
 		vector(Arg&& arg, Args&&... args);
+		vector(Type (&arr)[Dims]);
 		vector(const vector& other);
+		vector& operator=(const vector& other);
 
 	public:
 		Type& operator[](std::uint8_t index);
