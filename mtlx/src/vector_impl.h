@@ -5,21 +5,25 @@
 namespace mtlx
 {
 	template<std::uint8_t Dims, typename Type>
-	template<typename ...Args, typename>
-	vector<Dims, Type>::vector(Args&&... args)
-		: values{ std::forward<Args>(args)... }
-	{}
+	template<typename Arg, typename ...Args, typename>
+	vector<Dims, Type>::vector(Arg&& arg, Args&&... args)
+	{
+		values[0] = arg;
+		std::uint8_t counter{ 1 };
+		for (auto&& val : { args... })
+			values[counter++] = val;
+	}
 
 	template<std::uint8_t Dims, typename Type>
 	Type& vector<Dims, Type>::operator[](std::uint8_t index)
 	{
-		return values[index];
+		return (&x)[index];
 	}
 
 	template<std::uint8_t Dims, typename Type>
 	const Type& vector<Dims, Type>::operator[](std::uint8_t index) const
 	{
-		return values[index];
+		return (&x)[index];
 	}
 
 	template<std::uint8_t Dims, typename Type>
@@ -147,4 +151,28 @@ namespace mtlx
 			return dot_product;
 		}();
 	}
+
+	template<typename Type>
+	struct vec<2, Type> : public vector<2, Type>
+	{
+		using vector<2, Type>::vector;
+		Type& y{ values[1] };
+	};
+
+	template<typename Type>
+	struct vec<3, Type> : public vector<3, Type>
+	{
+		using vector<3, Type>::vector;
+		Type& y{ values[1] };
+		Type& z{ values[2] };
+	};
+
+	template<typename Type>
+	struct vec<4, Type> : public vector<4, Type>
+	{
+		using vector<4, Type>::vector;
+		Type& y{ values[1] };
+		Type& z{ values[2] };
+		Type& w{ values[3] };
+	};
 }

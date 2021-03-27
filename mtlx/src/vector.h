@@ -10,9 +10,9 @@ namespace mtlx
 	{
 	public:
 		vector() = default;
-		template<typename... Args,
-			typename = std::enable_if_t<sizeof...(Args) == Dims>>
-		vector(Args&&... args);
+		template<typename Arg, typename... Args,
+			typename = std::enable_if_t<sizeof...(Args) + 1 == Dims>>
+		vector(Arg&& arg, Args&&... args);
 
 	public:
 		Type& operator[](std::uint8_t index);
@@ -27,6 +27,7 @@ namespace mtlx
 
 	public:
 		Type values[Dims]{};
+		Type& x{ values[0] };
 	};
 
 	template<std::uint8_t Dims, typename Type>
@@ -55,6 +56,15 @@ namespace mtlx
 
 	template<std::uint8_t Dims, typename Type>
 	Type dot(const vector<Dims, Type>& vec1, const vector<Dims, Type>& vec2);
+
+	template<
+		std::uint8_t Dims,
+		typename Type = float
+	> struct vec : public vector<Dims, Type> {};
+
+	template<typename Type> struct vec<2, Type>;
+	template<typename Type> struct vec<3, Type>;
+	template<typename Type> struct vec<4, Type>;
 }
 
 #include "vector_impl.h"
