@@ -2,6 +2,8 @@
 
 #include <limits>
 
+#define MTLX_STATIC_ASSERT(check, message) static_assert(check, message)
+
 namespace mtlx::details
 {
 	template<std::uint8_t Dims, typename Type>
@@ -99,6 +101,8 @@ namespace mtlx
 	template<std::uint8_t Dims, typename Type>
 	Type magnitude(const vec<Dims, Type>& vec1)
 	{
+		MTLX_STATIC_ASSERT(std::numeric_limits<Type>::is_iec559,
+			"'magnitude' only supports floating-point vectors");
 		return details::compute_magnitude<Dims, Type>::call(vec1);
 	}
 
@@ -111,18 +115,24 @@ namespace mtlx
 	template<std::uint8_t Dims, typename Type>
 	vec<Dims, Type> normalize(const vec<Dims, Type>& vec1)
 	{
+		MTLX_STATIC_ASSERT(std::numeric_limits<Type>::is_iec559,
+			"'normalize' only supports floating-point vectors");
 		return details::compute_normalize<Dims, Type>::call(vec1);
 	}
 
 	template<std::uint8_t Dims, typename Type>
 	vec<Dims, Type> project(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2)
 	{
+		MTLX_STATIC_ASSERT(std::numeric_limits<Type>::is_iec559,
+			"'project' only supports floating-point vectors");
 		return details::compute_project<Dims, Type>::call(vec1, vec2);
 	}
 
 	template<std::uint8_t Dims, typename Type>
 	vec<Dims, Type> reject(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2)
 	{
+		MTLX_STATIC_ASSERT(std::numeric_limits<Type>::is_iec559,
+			"'reject' only supports floating-point vectors");
 		return details::compute_reject<Dims, Type>::call(vec1, vec2);
 	}
 
