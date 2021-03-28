@@ -10,9 +10,9 @@ namespace mtlx
 	{
 	public:
 		vector() = default;
-		template<typename Arg, typename... Args,
-			typename = std::enable_if_t<sizeof...(Args) + 1 == Dims>>
-		vector(Arg&& arg, Args&&... args);
+		template<typename... Args, 
+			typename = std::enable_if_t<sizeof...(Args) == Dims>>
+		vector(Args&&... args);
 		vector(Type (&arr)[Dims]);
 		vector(const vector& other);
 		vector& operator=(const vector& other);
