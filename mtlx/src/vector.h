@@ -54,24 +54,6 @@ namespace mtlx
 	template<std::uint8_t Dims, typename Type>
 	vec<Dims, Type> operator/(const vec<Dims, Type>& vec1, Type scalar);
 
-	template<std::uint8_t Dims, typename Type>
-	vec<Dims, Type> normalize(const vec<Dims, Type>& vec1);
-
-	template<std::uint8_t Dims, typename Type>
-	vec<Dims, Type> project(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2);
-
-	template<std::uint8_t Dims, typename Type>
-	vec<Dims, Type> reject(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2);
-
-	template<typename Type>
-	vec<3, Type> cross(const vec<3, Type>& vec1, const vec<3, Type>& vec2);
-
-	template<std::uint8_t Dims, typename Type>
-	Type magnitude(const vec<Dims, Type>& vec1);
-
-	template<std::uint8_t Dims, typename Type>
-	Type dot(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2);
-
 	using vec1 = vec<1, float>;
 	using vec2 = vec<2, float>;
 	using vec3 = vec<3, float>;

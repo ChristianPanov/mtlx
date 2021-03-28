@@ -1,6 +1,7 @@
 #pragma once
 
 #include "vector.h"
+#include "vector_function.h"
 
 #define MTLX_COLOR_ANALOG3 Type& r{ x }, &g{ y }, &b{ z }
 #define MTLX_COLOR_ANALOG4 Type& r{ x }, &g{ y }, &b{ z }, &a{ w }
@@ -128,56 +129,6 @@ namespace mtlx
 			for (std::uint8_t i = 0; i < Dims; ++i)
 				temp[i] *= scalar;
 			return vec<Dims, Type>(temp);
-		}();
-	}
-
-	template<std::uint8_t Dims, typename Type>
-	vec<Dims, Type> normalize(const vec<Dims, Type>& vec1)
-	{
-		return (vec1 / magnitude(vec1));
-	}
-
-	template<std::uint8_t Dims, typename Type>
-	vec<Dims, Type> project(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2)
-	{
-		return (vec2 * (dot(vec1, vec2) / dot(vec2, vec2)));
-	}
-
-	template<std::uint8_t Dims, typename Type>
-	vec<Dims, Type> reject(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2)
-	{
-		return (vec1 - vec2 * (dot(vec1, vec2) / dot(vec2, vec2)));
-	}
-
-	template<typename Type>
-	vec<3, Type> cross(const vec<3, Type>& vec1, const vec<3, Type>& vec2)
-	{
-		return vec<3, Type>(
-			vec1.y * vec2.z - vec1.z * vec2.y,
-			vec1.z * vec2.x - vec1.x * vec2.z,
-			vec1.y * vec2.y - vec1.y * vec2.x
-			);
-	}
-
-	template<std::uint8_t Dims, typename Type>
-	Type magnitude(const vec<Dims, Type>& vec1)
-	{
-		return [&]() {
-			Type mag{};
-			for (std::uint8_t i = 0; i < Dims; ++i)
-				mag += vec1[i] * vec1[i];
-			return std::sqrt(mag);
-		}();
-	}
-
-	template<std::uint8_t Dims, typename Type>
-	Type dot(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2)
-	{
-		return [&]() {
-			Type dot_product{};
-			for (std::uint8_t i = 0; i < Dims; ++i)
-				dot_product += vec1[i] * vec2[i];
-			return dot_product;
 		}();
 	}
 
