@@ -5,7 +5,7 @@ Lightweight linear algebra template library for computer graphics
 git clone --recursive https://github.com/ChristianPanov/mtlx
 ```
 # Design Highlights
-- Based on the OpenGL Shading Language (GLSL) specifications
+- Based(currently loosely) on the OpenGL Shading Language (GLSL) specifications
 - Very lightweight - mtlx is designed to be small and compact, and at the same time, to provide a modern interface for all of the functonality you will need in computer graphics
 - Generic - all the mtlx classes are templates which allows for elegant non-repeating flexible solutions
 # Features
