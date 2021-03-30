@@ -14,6 +14,8 @@ namespace mtlx
 			typename = std::enable_if_t<sizeof...(Args) == Dims>>
 		vector(Args&&... args);
 		vector(Type (&arr)[Dims]);
+		vector(const vector& other);
+		vector& operator=(const vector& other);
 
 	public:
 		Type& operator[](std::uint8_t index);
