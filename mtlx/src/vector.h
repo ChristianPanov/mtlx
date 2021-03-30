@@ -5,7 +5,7 @@
 
 namespace mtlx
 {
-	template<std::uint8_t Dims, typename Type = float>
+	template<std::uint8_t Dims, typename Type>
 	struct vector
 	{
 	public:
