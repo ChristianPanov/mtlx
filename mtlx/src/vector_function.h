@@ -249,7 +249,7 @@ namespace mtlx
 	vec<Dims, Type> operator/(const vec<Dims, Type>& vec1, Type scalar)
 	{
 		MTLX_STATIC_ASSERT(std::numeric_limits<Type>::is_iec559,
-			"'division' only supports floating-point values");
+			"'operator/' only supports floating-point vectors");
 		return details::compute_division<Dims, Type>::call(vec1, scalar);
 	}
 
