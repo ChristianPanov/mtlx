@@ -33,10 +33,8 @@ namespace mtlx
 		Type& x{ values[0] };
 	};
 
-	template<
-		std::uint8_t Dims,
-		typename Type = float
-	> struct vec : public vector<Dims, Type> {};
+	template<std::uint8_t Dims,typename Type> 
+	struct vec : public vector<Dims, Type> {};
 
 	template<typename Type> struct vec<2, Type>;
 	template<typename Type> struct vec<3, Type>;
