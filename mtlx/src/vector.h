@@ -15,7 +15,6 @@ namespace mtlx
 		vector(Args&&... args);
 		vector(Type (&arr)[Dims]);
 		vector(const vector& other);
-		vector& operator=(const vector& other);
 
 	public:
 		Type& operator[](std::uint8_t index);
