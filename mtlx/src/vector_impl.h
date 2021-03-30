@@ -28,13 +28,6 @@ namespace mtlx
 	}
 
 	template<std::uint8_t Dims, typename Type>
-	vector<Dims, Type>& vector<Dims, Type>::operator=(const vector& other)
-	{
-		std::memcpy(values, other.values, Dims * sizeof(Type));
-		return *this;
-	}
-
-	template<std::uint8_t Dims, typename Type>
 	Type& vector<Dims, Type>::operator[](std::uint8_t index)
 	{
 		return (&x)[index];
