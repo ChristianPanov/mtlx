@@ -87,51 +87,6 @@ namespace mtlx
 		return *this;
 	}
 
-	template<std::uint8_t Dims, typename Type>
-	vec<Dims, Type> operator+(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2)
-	{
-		vec<Dims, Type> temp(vec1);
-		return [&]() {
-			for (std::uint8_t i = 0; i < Dims; ++i)
-				temp[i] += vec2[i];
-			return vec<Dims, Type>(temp);
-		}();
-	}
-
-	template<std::uint8_t Dims, typename Type>
-	vec<Dims, Type> operator-(const vec<Dims, Type>& vec1, const vec<Dims, Type>& vec2)
-	{
-		vec<Dims, Type> temp(vec1);
-		return [&]() {
-			for (std::uint8_t i = 0; i < Dims; ++i)
-				temp[i] -= vec2[i];
-			return vec<Dims, Type>(temp);
-		}();
-	}
-
-	template<std::uint8_t Dims, typename Type>
-	vec<Dims, Type> operator*(const vec<Dims, Type>& vec1, Type scalar)
-	{
-		vec<Dims, Type> temp(vec1);
-		return [&]() {
-			for (std::uint8_t i = 0; i < Dims; ++i)
-				temp[i] *= scalar;
-			return vec<Dims, Type>(temp);
-		}();
-	}
-
-	template<std::uint8_t Dims, typename Type>
-	vec<Dims, Type> operator/(const vec<Dims, Type>& vec1, Type scalar)
-	{
-		vec<Dims, Type> temp(vec1);
-		return [&]() {
-			scalar = 1.0f / scalar;
-			for (std::uint8_t i = 0; i < Dims; ++i)
-				temp[i] *= scalar;
-			return vec<Dims, Type>(temp);
-		}();
-	}
-
 	template<typename Type>
 	struct vec<2, Type> : public vector<2, Type>
 	{
