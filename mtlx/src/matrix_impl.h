@@ -35,6 +35,12 @@ namespace mtlx
 	}
 
 	template<std::uint8_t Cols, std::uint8_t Rows, typename Type>
+	matrix<Cols, Rows, Type>::matrix(const matrix& other)
+	{
+		std::memcpy(entries, other.entries, Cols * Rows * sizeof(Type));
+	}
+
+	template<std::uint8_t Cols, std::uint8_t Rows, typename Type>
 	Type& matrix<Cols, Rows, Type>::operator()(std::uint8_t col, std::uint8_t row)
 	{
 		return entries[row][col];

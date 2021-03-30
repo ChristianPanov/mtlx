@@ -16,6 +16,7 @@ namespace mtlx
 			typename = std::enable_if_t<sizeof...(Args) == Cols * Rows>>
 		matrix(Args&&... args);
 		matrix(Type (&arr)[Cols][Rows]);
+		matrix(const matrix& other);
 
 	public:
 		Type& operator()(std::uint8_t col, std::uint8_t row);
