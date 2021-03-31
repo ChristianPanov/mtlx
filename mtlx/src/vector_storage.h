@@ -21,6 +21,7 @@ namespace mtlx::details
 		union
 		{
 			struct { Type x, y; };
+			struct { Type r, g; };
 			Type values[2];
 		};
 	};
