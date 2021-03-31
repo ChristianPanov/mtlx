@@ -24,10 +24,6 @@ namespace mtlx
 	public:
 		Type entries[Cols][Rows]{};
 	};
-
-	using mat2 = matrix<2, 2, float>;
-	using mat3 = matrix<3, 3, float>;
-	using mat4 = matrix<4, 4, float>;
 }
 
 #include "matrix_impl.h"
