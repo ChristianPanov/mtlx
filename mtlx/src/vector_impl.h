@@ -6,7 +6,7 @@
 namespace mtlx
 {
 	template<std::uint8_t Dims, typename Type>
-	template<typename ...Args, typename>
+	template<typename... Args, typename>
 	vector<Dims, Type>::vector(Args&&... args)
 		: details::vector_storage<Dims, Type>{ args... }
 	{}
