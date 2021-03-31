@@ -8,11 +8,8 @@ namespace mtlx
 	template<std::uint8_t Dims, typename Type>
 	template<typename ...Args, typename>
 	vector<Dims, Type>::vector(Args&&... args)
-	{
-		std::uint8_t counter{ 0 };
-		for (auto&& arg : { args... })
-			values[counter++] = arg;
-	}
+		: details::vector_storage<Dims, Type>{ args... }
+	{}
 
 	template<std::uint8_t Dims, typename Type>
 	vector<Dims, Type>::vector(Type (&arr)[Dims])
