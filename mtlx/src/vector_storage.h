@@ -31,6 +31,7 @@ namespace mtlx::details
 		union
 		{
 			struct { Type x, y, z; };
+			struct { Type r, g, b; };
 			Type values[3];
 		};
 	};
@@ -41,6 +42,7 @@ namespace mtlx::details
 		union
 		{
 			struct { Type x, y, z, w; };
+			struct { Type r, g, b, a; };
 			Type values[4];
 		};
 	};
