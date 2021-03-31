@@ -3,8 +3,6 @@
 #include <cstdint>
 #include <type_traits>
 
-#include "vector.h"
-
 namespace mtlx
 {
 	template<std::uint8_t Cols, std::uint8_t Rows, typename Type>
