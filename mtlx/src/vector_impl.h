@@ -37,13 +37,13 @@ namespace mtlx
 	template<std::uint8_t Dims, typename Type>
 	Type& vector<Dims, Type>::operator[](std::uint8_t index)
 	{
-		return (&x)[index];
+		return values[index];
 	}
 
 	template<std::uint8_t Dims, typename Type>
 	const Type& vector<Dims, Type>::operator[](std::uint8_t index) const
 	{
-		return (&x)[index];
+		return values[index];
 	}
 
 	template<std::uint8_t Dims, typename Type>
@@ -88,9 +88,17 @@ namespace mtlx
 	}
 
 	template<typename Type>
+	struct vec<1, Type> : public vector<1, Type>
+	{
+		using vector<1, Type>::vector;
+		Type& x{ values[0] };
+	};
+
+	template<typename Type>
 	struct vec<2, Type> : public vector<2, Type>
 	{
 		using vector<2, Type>::vector;
+		Type& x{ values[0] };
 		Type& y{ values[1] };
 	};
 
@@ -98,6 +106,7 @@ namespace mtlx
 	struct vec<3, Type> : public vector<3, Type>
 	{
 		using vector<3, Type>::vector;
+		Type& x{ values[0] };
 		Type& y{ values[1] };
 		Type& z{ values[2] };
 		MTLX_COLOR_ANALOG3;
@@ -107,6 +116,7 @@ namespace mtlx
 	struct vec<4, Type> : public vector<4, Type>
 	{
 		using vector<4, Type>::vector;
+		Type& x{ values[0] };
 		Type& y{ values[1] };
 		Type& z{ values[2] };
 		Type& w{ values[3] };

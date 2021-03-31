@@ -30,7 +30,6 @@ namespace mtlx
 
 	public:
 		Type values[Dims]{};
-		Type& x{ values[0] };
 	};
 
 	template<std::uint8_t Dims,typename Type> 
