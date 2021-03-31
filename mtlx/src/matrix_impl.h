@@ -47,14 +47,14 @@ namespace mtlx
 	}
 
 	template<std::uint8_t Cols, std::uint8_t Rows, typename Type>
-	vec<Rows, Type>& matrix<Cols, Rows, Type>::operator[](std::uint8_t index)
+	vector<Rows, Type>& matrix<Cols, Rows, Type>::operator[](std::uint8_t index)
 	{
-		return vec<Rows, Type>(entries[index]);
+		return vector<Rows, Type>(entries[index]);
 	}
 
 	template<std::uint8_t Cols, std::uint8_t Rows, typename Type>
-	const vec<Rows, Type>& matrix<Cols, Rows, Type>::operator[](std::uint8_t index) const
+	const vector<Rows, Type>& matrix<Cols, Rows, Type>::operator[](std::uint8_t index) const
 	{
-		return vec<Rows, Type>(entries[index]);
+		return vector<Rows, Type>(entries[index]);
 	}
 }

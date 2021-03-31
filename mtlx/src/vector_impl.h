@@ -3,16 +3,16 @@
 #include "vector.h"
 #include "vector_function.h"
 
-#define MTLX_COLOR_ANALOG3 Type& r{ x }, &g{ y }, &b{ z }
-#define MTLX_COLOR_ANALOG4 Type& r{ x }, &g{ y }, &b{ z }, &a{ w }
-
 namespace mtlx
 {
 	template<std::uint8_t Dims, typename Type>
 	template<typename ...Args, typename>
 	vector<Dims, Type>::vector(Args&&... args)
-		: values{ std::forward<Args>(args)... }
-	{}
+	{
+		std::uint8_t counter{ 0 };
+		for (auto&& arg : { args... })
+			values[counter++] = arg;
+	}
 
 	template<std::uint8_t Dims, typename Type>
 	vector<Dims, Type>::vector(Type (&arr)[Dims])
@@ -86,40 +86,4 @@ namespace mtlx
 			values[i] *= -1;
 		return *this;
 	}
-
-	template<typename Type>
-	struct vec<1, Type> : public vector<1, Type>
-	{
-		using vector<1, Type>::vector;
-		Type& x{ values[0] };
-	};
-
-	template<typename Type>
-	struct vec<2, Type> : public vector<2, Type>
-	{
-		using vector<2, Type>::vector;
-		Type& x{ values[0] };
-		Type& y{ values[1] };
-	};
-
-	template<typename Type>
-	struct vec<3, Type> : public vector<3, Type>
-	{
-		using vector<3, Type>::vector;
-		Type& x{ values[0] };
-		Type& y{ values[1] };
-		Type& z{ values[2] };
-		MTLX_COLOR_ANALOG3;
-	};
-
-	template<typename Type>
-	struct vec<4, Type> : public vector<4, Type>
-	{
-		using vector<4, Type>::vector;
-		Type& x{ values[0] };
-		Type& y{ values[1] };
-		Type& z{ values[2] };
-		Type& w{ values[3] };
-		MTLX_COLOR_ANALOG4;
-	};
 }

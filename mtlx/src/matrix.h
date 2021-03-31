@@ -20,8 +20,8 @@ namespace mtlx
 	public:
 		Type& operator()(std::uint8_t col, std::uint8_t row);
 		const Type& operator()(std::uint8_t col, std::uint8_t row) const;
-		vec<Rows, Type>& operator[](std::uint8_t index);
-		const vec<Rows, Type>& operator[](std::uint8_t index) const;
+		vector<Rows, Type>& operator[](std::uint8_t index);
+		const vector<Rows, Type>& operator[](std::uint8_t index) const;
 
 	public:
 		Type entries[Cols][Rows]{};
