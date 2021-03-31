@@ -34,13 +34,13 @@ namespace mtlx
 	template<std::uint8_t Dims, typename Type>
 	Type& vector<Dims, Type>::operator[](std::uint8_t index)
 	{
-		return values[index];
+		return (&x)[index];
 	}
 
 	template<std::uint8_t Dims, typename Type>
 	const Type& vector<Dims, Type>::operator[](std::uint8_t index) const
 	{
-		return values[index];
+		return (&x)[index];
 	}
 
 	template<std::uint8_t Dims, typename Type>
