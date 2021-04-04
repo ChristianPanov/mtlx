@@ -3,6 +3,7 @@
 #include "vector.h"
 #include "vector_function.h"
 #include "matrix.h"
+#include "matrix_function.h"
 
 namespace mtlx
 {
