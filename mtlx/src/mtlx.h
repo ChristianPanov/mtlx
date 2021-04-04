@@ -1,6 +1,7 @@
 #pragma once
 
 #include "vector.h"
+#include "vector_function.h"
 #include "matrix.h"
 
 namespace mtlx

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "vector.h"
-#include "vector_function.h"
+#include "vector_operator.h"
 
 namespace mtlx
 {
@@ -46,41 +46,35 @@ namespace mtlx
 	template<std::uint8_t Dims, typename Type>
 	vector<Dims, Type>& vector<Dims, Type>::operator+=(const vector& other)
 	{
-		for (std::uint8_t i = 0; i < Dims; ++i)
-			values[i] += other[i];
+		details::operator_add_asgmt<Dims, Type>::call(*this, other);
 		return *this;
 	}
 
 	template<std::uint8_t Dims, typename Type>
 	vector<Dims, Type>& vector<Dims, Type>::operator-=(const vector& other)
 	{
-		for (std::uint8_t i = 0; i < Dims; ++i)
-			values[i] -= other[i];
+		details::operator_sub_asgmt<Dims, Type>::call(*this, other);
 		return *this;
 	}
 
 	template<std::uint8_t Dims, typename Type>
 	vector<Dims, Type>& vector<Dims, Type>::operator*=(Type scalar)
 	{
-		for (std::uint8_t i = 0; i < Dims; ++i)
-			values[i] *= scalar;
+		details::operator_mult_asgmt<Dims, Type>::call(*this, other);
 		return *this;
 	}
 
 	template<std::uint8_t Dims, typename Type>
 	vector<Dims, Type>& vector<Dims, Type>::operator/=(Type scalar)
 	{
-		scalar = 1.0f / scalar;
-		for (std::uint8_t i = 0; i < Dims; ++i)
-			values[i] *= scalar;
+		details::operator_div_asgmt<Dims, Type>::call(*this, other);
 		return *this;
 	}
 
 	template<std::uint8_t Dims, typename Type>
 	vector<Dims, Type>& vector<Dims, Type>::operator-()
 	{
-		for (std::uint8_t i = 0; i < Dims; ++i)
-			values[i] *= -1;
+		details::operator_negation<Dims, Type>::call(*this);
 		return *this;
 	}
 }
