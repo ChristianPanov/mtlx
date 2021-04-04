@@ -5,24 +5,24 @@
 
 namespace mtlx
 {
-	template<std::uint8_t Cols, std::uint8_t Rows, typename Type>
+	template<std::uint8_t Rows, std::uint8_t Cols, typename Type>
 	class matrix
 	{
 	public:
 		matrix() = default;
 		template<typename... Args,
-			typename = std::enable_if_t<sizeof...(Args) == Cols * Rows>>
+			typename = std::enable_if_t<sizeof...(Args) == Rows * Cols>>
 		matrix(Args&&... args);
-		matrix(Type (&arr)[Cols][Rows]);
+		matrix(Type (&arr)[Rows][Cols]);
 
 	public:
 		Type& operator()(std::uint8_t col, std::uint8_t row);
 		const Type& operator()(std::uint8_t col, std::uint8_t row) const;
-		vector<Rows, Type>& operator[](std::uint8_t index);
-		const vector<Rows, Type>& operator[](std::uint8_t index) const;
+		vector<Cols, Type>& operator[](std::uint8_t index);
+		const vector<Cols, Type>& operator[](std::uint8_t index) const;
 
 	public:
-		Type entries[Cols][Rows]{};
+		Type entries[Rows][Cols]{};
 	};
 }
 
