@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <limits>
 
-#define MTLX_STATIC_ASSERT(condition, message) static_assert(condition, message)
+#define MTLX_STATIC_ASSERT(check, message) static_assert(check, message)
 
 namespace mtlx::details
 {
